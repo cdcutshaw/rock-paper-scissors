@@ -38,28 +38,68 @@ let computerScore = 0;
 //play round
 function playRound (humanChoice, computerChoice)
 {
+
     if (humanChoice == computerChoice) {
         alert ("It's a tie");}
-
-    else if (humanChoice == "rock") {
+    else if (humanChoice == "rock")
+    {
         if (computerChoice == "scissors")
-         alert ("You win!"); 
-        else alert ("You lose");}
+            {
+                alert ("You win!"); 
+                humanScore++;
+            }
+        else
+        {
+            alert ("You lose");
+            computerScore++;
+        }
+    }
 
-    else if (humanChoice == "paper") {
+    else if (humanChoice == "paper")
+        {
             if (computerChoice == "rock")
-             alert ("You win!");
-            else alert ("You lose");}
+                {
+                    alert ("You win!");
+                    humanScore++;
+                }
+            else
+            {
+                alert ("You lose");
+                computerScore++;
+            }
 
-    else if (humanChoice== "scissors") {
+        }
+
+    else if (humanChoice== "scissors")
+        {
             if (computerChoice == "paper")
-             alert ("You win!");
-            else alert ("You lose");}
-
-    
+                {
+                    alert ("You win!");
+                    humanScore++;
+                }
+                else
+                {
+                    alert ("You lose");
+                    computerScore++;
+                }
+        } 
 }
 
 const humanSelection = getHumanChoice();
 const computerSelection = getComputerChoice();
 
-playRound(humanSelection, computerSelection)
+playRound(humanSelection, computerSelection);
+console.log(humanScore);
+console.log(computerScore);
+playRound(humanSelection, computerSelection);
+console.log(humanScore);
+console.log(computerScore);
+playRound(humanSelection, computerSelection);
+console.log(humanScore);
+console.log(computerScore);
+playRound(humanSelection, computerSelection);
+console.log(humanScore);
+console.log(computerScore);
+playRound(humanSelection, computerSelection);
+console.log(humanScore);
+console.log(computerScore);
