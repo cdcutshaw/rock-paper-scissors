@@ -1,15 +1,3 @@
-// computer choice
-function getComputerChoice () {
-let randomNumber = Math.floor((Math.random() * 3) + 1);
-    if (randomNumber === 1) {
-        return "rock";}
-    if (randomNumber === 2) {
-         return "paper";}
-    if (randomNumber === 3) {
-         return "scissors"}             
-}
-console.log(getComputerChoice())
-
 // human choice
 function getHumanChoice (){   
 let choice = prompt ("Rock, Paper, or Scissors?", "");
@@ -24,3 +12,18 @@ let choice = prompt ("Rock, Paper, or Scissors?", "");
         return ("scissors");}
 }
 console.log(getHumanChoice())
+
+// computer choice
+function getComputerChoice () {
+let randomNumber = Math.floor((Math.random() * 3) + 1);
+    if (randomNumber === 1) {
+        alert ("Opponent chose rock!");
+        return "rock";}
+    if (randomNumber === 2) {
+        alert ("Opponent chose paper!");
+         return "paper";}
+    if (randomNumber === 3) {
+        alert ("Opponent chose scissors!");
+         return "scissors"}             
+}
+console.log(getComputerChoice())
