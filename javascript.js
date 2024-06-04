@@ -1,6 +1,6 @@
 // human choice
-function getHumanChoice (){   
-
+function getHumanChoice ()
+{   
 let choice = prompt ("Rock, Paper, or Scissors?", "");
 choice = choice.toLowerCase();
 
@@ -11,12 +11,12 @@ choice = choice.toLowerCase();
     else if (choice == "scissors"){
         alert ("You chose scissors!");}
     return choice;  
-
 }
-//console.log(getHumanChoice());
+
 
 // computer choice
-function getComputerChoice () {
+function getComputerChoice () 
+{
 let randomNumber = Math.floor((Math.random() * 3) + 1);
     if (randomNumber === 1) {
         alert ("Opponent chose rock!");
@@ -28,30 +28,26 @@ let randomNumber = Math.floor((Math.random() * 3) + 1);
         alert ("Opponent chose scissors!");
          return "scissors"}             
 }
-//getComputerChoice();
 
-//declare player score variables
-let humanScore = 0;
-let computerScore = 0;
-
-
-//play round
-function playRound (humanChoice, computerChoice)
+// Function to play 1 round
+function playRound (humanChoice, computerChoice)   
 {
 
     if (humanChoice == computerChoice) {
-        alert ("It's a tie");}
+        alert ("It's a tie");
+        return "tie"}
+
     else if (humanChoice == "rock")
     {
         if (computerChoice == "scissors")
             {
                 alert ("You win!"); 
-                humanScore++;
+                return "humanWon";
             }
         else
         {
             alert ("You lose");
-            computerScore++;
+            return "humanLost";
         }
     }
 
@@ -60,12 +56,12 @@ function playRound (humanChoice, computerChoice)
             if (computerChoice == "rock")
                 {
                     alert ("You win!");
-                    humanScore++;
+                    return "humanWon";
                 }
             else
             {
                 alert ("You lose");
-                computerScore++;
+                return "humanLost";
             }
 
         }
@@ -75,31 +71,60 @@ function playRound (humanChoice, computerChoice)
             if (computerChoice == "paper")
                 {
                     alert ("You win!");
-                    humanScore++;
+                    return "humanWon";
                 }
                 else
                 {
                     alert ("You lose");
-                    computerScore++;
+                    return "humanLost";
                 }
-        } 
+        }
 }
 
-const humanSelection = getHumanChoice();
-const computerSelection = getComputerChoice();
 
-playRound(humanSelection, computerSelection);
-console.log(humanScore);
-console.log(computerScore);
-playRound(humanSelection, computerSelection);
-console.log(humanScore);
-console.log(computerScore);
-playRound(humanSelection, computerSelection);
-console.log(humanScore);
-console.log(computerScore);
-playRound(humanSelection, computerSelection);
-console.log(humanScore);
-console.log(computerScore);
-playRound(humanSelection, computerSelection);
-console.log(humanScore);
-console.log(computerScore);
+//function to play 5 rounds
+function playGame() {
+
+    //declare player score variables
+    let humanScore = 0;
+    let computerScore = 0;
+
+    //function to play 1 round
+    for (let i = 1; i < 6; i++)
+    {
+        const humanSelection = getHumanChoice();
+        const computerSelection = getComputerChoice();
+
+        let whoWon = playRound(humanSelection, computerSelection);        
+        if(whoWon == "humanWon")
+            {
+                humanScore++;
+            }
+        else if(whoWon == "humanLost")
+            {
+                computerScore++;
+            }
+
+            alert ("Your score: " + humanScore + "     Opponent's score: " + computerScore);
+    }
+
+    if(humanScore == computerScore)
+        {
+            alert ("It's a tie!");
+        }
+    if(humanScore > computerScore)
+        {
+            alert ("You won! Congrts!");
+        }
+    if(humanScore < computerScore)
+        {
+            alert("You lost, womp womp...");
+        }
+
+}
+
+playGame();
+ 
+
+
+
