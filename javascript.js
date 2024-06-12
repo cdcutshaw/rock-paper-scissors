@@ -1,20 +1,12 @@
-// human choice
-function getHumanChoice ()
-{   
-let choice = prompt ("Rock, Paper, or Scissors?", "");
-choice = choice.toLowerCase();
+let humanScore = 0;
+let computerScore = 0;
 
-    if (choice == "rock") {
-        alert ("You chose rock!");}
-    else if (choice == "paper"){
-        alert ("You chose paper!");}
-    else if (choice == "scissors"){
-        alert ("You chose scissors!");}
-    return choice;  
-}
+const buttons = document.querySelectorAll("button");
+const results = document.querySelector("#results");
+const finalResult = document.querySelector("#finalResult");
+const buttonContainer = document.querySelector("#buttonContainer");
+const body = document.querySelector("body");
 
-
-// computer choice
 function getComputerChoice () 
 {
 let randomNumber = Math.floor((Math.random() * 3) + 1);
@@ -29,24 +21,23 @@ let randomNumber = Math.floor((Math.random() * 3) + 1);
          return "scissors"}             
 }
 
-// Function to play 1 round
 function playRound (humanChoice, computerChoice)   
 {
 
     if (humanChoice == computerChoice) {
-        alert ("It's a tie");
+        //alert ("It's a tie");
         return "tie"}
 
     else if (humanChoice == "rock")
     {
         if (computerChoice == "scissors")
             {
-                alert ("You win!"); 
+                //alert ("You win!"); 
                 return "humanWon";
             }
         else
         {
-            alert ("You lose");
+            //alert ("You lose");
             return "humanLost";
         }
     }
@@ -55,12 +46,12 @@ function playRound (humanChoice, computerChoice)
         {
             if (computerChoice == "rock")
                 {
-                    alert ("You win!");
+                    //alert ("You win!");
                     return "humanWon";
                 }
             else
             {
-                alert ("You lose");
+                //alert ("You lose");
                 return "humanLost";
             }
 
@@ -70,32 +61,19 @@ function playRound (humanChoice, computerChoice)
         {
             if (computerChoice == "paper")
                 {
-                    alert ("You win!");
+                    //alert ("You win!");
                     return "humanWon";
                 }
                 else
                 {
-                    alert ("You lose");
+                    //alert ("You lose");
                     return "humanLost";
                 }
         }
 }
 
-
-//function to play 5 rounds
-function playGame() {
-
-    //declare player score variables
-    let humanScore = 0;
-    let computerScore = 0;
-
-    //function to play 1 round
-    for (let i = 1; i < 6; i++)
-    {
-        const humanSelection = getHumanChoice();
-        const computerSelection = getComputerChoice();
-
-        let whoWon = playRound(humanSelection, computerSelection);        
+function returnResults (whoWon) 
+{    
         if(whoWon == "humanWon")
             {
                 humanScore++;
@@ -105,25 +83,42 @@ function playGame() {
                 computerScore++;
             }
 
-            alert ("Your score: " + humanScore + "     Opponent's score: " + computerScore);
-    }
+            results.textContent = "Your score: " + humanScore + "  -   Opponent's score: " + computerScore;
+  
+        if(humanScore >= 5)
+            {
+                 finalResult.textContent = "Game Over: You Win!";
+                 body.removeChild(buttonContainer);
+                
+            }
+        if(computerScore >= 5)
+            {
+                finalResult.textContent = "Game Over: You Lose!";
+                body.removeChild(buttonContainer);
 
-    if(humanScore == computerScore)
-        {
-            alert ("It's a tie!");
-        }
-    if(humanScore > computerScore)
-        {
-            alert ("You won! Congrts!");
-        }
-    if(humanScore < computerScore)
-        {
-            alert("You lost, womp womp...");
-        }
-
+            }        
 }
 
-playGame();
+
+
+
+buttons.forEach(button => 
+{
+    button.addEventListener("click", event => 
+    {
+        playerChoice = button.id;
+        computerChoice = getComputerChoice();
+        result = playRound (playerChoice, computerChoice);
+        returnResults(result);
+    })
+})
+
+
+
+
+
+
+
  
 
 
